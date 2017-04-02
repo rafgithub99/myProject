@@ -26,10 +26,9 @@ public class EmployeeInfo extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	Connection connection = null;
-	String total;
 	private JTable table_1;
 	private JLabel lblTotalRecords;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -53,6 +52,8 @@ public class EmployeeInfo extends JFrame {
 		this.connection = connection;
 		return connection;
 	}
+	
+	
 	
 	public EmployeeInfo() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
