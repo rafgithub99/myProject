@@ -62,28 +62,29 @@ public class EmployeeInfo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnLoadData = new JButton("Load Employee Data");
-		btnLoadData.addActionListener(new ActionListener() {
+		JButton btnLoadEmployeeData = new JButton("Load Employee Data");
+		btnLoadEmployeeData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try{
 					String employeeQuery = "USE NORTHWND SELECT * FROM Employees";
-					PreparedStatement pst = connection.prepareStatement(employeeQuery);
-					ResultSet rs = pst.executeQuery();
-					table.setModel(DbUtils.resultSetToTableModel(rs));
+					PreparedStatement pstEmployees = connection.prepareStatement(employeeQuery);
+					ResultSet rsEmployees = pstEmployees.executeQuery();
+					table.setModel(DbUtils.resultSetToTableModel(rsEmployees));
 					
 					String employeeCount = "SELECT COUNT(EmployeeID) AS Total FROM Employees";
-					PreparedStatement pst2 = connection.prepareStatement(employeeCount);
-					ResultSet rs2 = pst2.executeQuery();
-					table_1.setModel(DbUtils.resultSetToTableModel(rs2));
-					connection.close();
-				}catch (Exception e){
-					JOptionPane.showMessageDialog(null, e);
-				}//end try/catch block				
+					PreparedStatement pstEmployeeCount = connection.prepareStatement(employeeCount);
+					ResultSet rsEmployeeCount = pstEmployeeCount.executeQuery();
+					table_1.setModel(DbUtils.resultSetToTableModel(rsEmployeeCount));
+					
+				}catch (Exception employeesException){
+					JOptionPane.showMessageDialog(null, employeesException);
+				}//end try/catch block
+				
 			}//end actionPerformed
 		});//end ActionListener
-		btnLoadData.setBounds(504, 48, 207, 29);
-		contentPane.add(btnLoadData);
+		btnLoadEmployeeData.setBounds(536, 48, 207, 29);
+		contentPane.add(btnLoadEmployeeData);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(110, 119, 1056, 375);
@@ -100,6 +101,54 @@ public class EmployeeInfo extends JFrame {
 		lblTotalRecords = new JLabel("Total Records");
 		lblTotalRecords.setBounds(110, 544, 115, 33);
 		contentPane.add(lblTotalRecords);
+		
+		JButton btnLoadCustomerData = new JButton("Load Customer Data");
+		btnLoadCustomerData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try{
+					String customersQuery = "USE NORTHWND SELECT * FROM Customers";
+					PreparedStatement pstCustomers = connection.prepareStatement(customersQuery);
+					ResultSet rsCustomers = pstCustomers.executeQuery();
+					table.setModel(DbUtils.resultSetToTableModel(rsCustomers));
+					
+					String customersCount = "SELECT COUNT(CustomerID) AS Total FROM Customers";
+					PreparedStatement pstCustomersCount = connection.prepareStatement(customersCount);
+					ResultSet rsCustomersCount = pstCustomersCount.executeQuery();
+					table_1.setModel(DbUtils.resultSetToTableModel(rsCustomersCount));
+					
+				}catch (Exception customersException){
+					JOptionPane.showMessageDialog(null, customersException);
+				}//end try/catch block
+				
+			}//end actionPerformed
+		});//end ActionListener
+		btnLoadCustomerData.setBounds(206, 48, 207, 29);
+		contentPane.add(btnLoadCustomerData);
+		
+		JButton btnLoadOrdersData = new JButton("Load Orders Data");
+		btnLoadOrdersData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try{
+					String ordersQuery = "USE NORTHWND SELECT * FROM Orders";
+					PreparedStatement pstOrders = connection.prepareStatement(ordersQuery);
+					ResultSet rsOrders = pstOrders.executeQuery();
+					table.setModel(DbUtils.resultSetToTableModel(rsOrders));
+					
+					String ordersCount = "SELECT COUNT(OrderID) AS Total FROM Orders";
+					PreparedStatement pstOrdersCount = connection.prepareStatement(ordersCount);
+					ResultSet rsOrdersCount = pstOrdersCount.executeQuery();
+					table_1.setModel(DbUtils.resultSetToTableModel(rsOrdersCount));
+					
+				}catch (Exception ordersException){
+					JOptionPane.showMessageDialog(null, ordersException);
+				}//end try/catch block
+				
+			}//end actionPerformed
+		});//end ActionListener
+		btnLoadOrdersData.setBounds(856, 48, 207, 29);
+		contentPane.add(btnLoadOrdersData);
 		
 	}//end constructor EmployeeInfo
 }//end class EmployeeInfo
