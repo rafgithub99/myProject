@@ -1,5 +1,7 @@
 package unit2;
 
+//not secure, no validation!
+
 import java.sql.*;
 import javax.swing.*;
 
@@ -26,5 +28,5 @@ public class SQLconnection {
 		}//end try/catch block
 		
 	}//end method dbConnector
-
+	
 }//end class SQLconnection

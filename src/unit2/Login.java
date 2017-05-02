@@ -81,7 +81,7 @@ public class Login {
 				try{
 					username = textField.getText();
 					password = passwordField.getText();
-					Connection connection=SQLconnection.dbConnector(username, password);//pass values to connect
+					Connection connection=SecureSQLconn.dbConnector(username, password);//pass values to connect
 					if(connection != null){
 						frame.dispose();//close current frame
 						EmployeeInfo empInfo = new EmployeeInfo();//new instance of EmployeeInfo class
